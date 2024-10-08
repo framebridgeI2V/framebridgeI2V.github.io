@@ -1,0 +1,8 @@
+0048: lunges
+0050: playing sitar
+0105: mopping floor
+0121: rafting
+0132: horse riding
+0173: playing piano
+0237: head massage
+2045: band marching
