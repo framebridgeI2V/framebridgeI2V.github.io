@@ -56,6 +56,7 @@
               </font>
             </p>
 
+            <br></br>
             <h2 id="note">
               <font color="000093">Innovations</font>
             </h2>
@@ -69,27 +70,127 @@
               <font color="061E61"> <b>Neural prior</b> finds a stronger prior than the static image for video target, further improving the performance of FrameBridge.</font>
             </li>
 
-            <br></br>
             <figure>
               <p align="center"><img src="figures/Figure1_process.svg" width="100%" class="center" /></p>
               <figcaption>
                 <p style="text-align: justify;">
                   <font color="061E61"><b>Figure 1:</b> Overview of FrameBridge and diffusion-based I2V models. 
-                    The sampling process of FrameBridge (upper) starts from a deterministic data point, while diffusion-based I2V systems (lower) synthesize videos from pure Gaussian noise.
+                    The sampling process of FrameBridge (upper) starts from a deterministic data point, while diffusion models (lower) synthesize videos from Gaussian noise.
                 </p>
               </figcaption>
             </figure>
-            
 
             <br></br>
             <h2 id="FrameBridge VS Diffusion Counterpart">
               <font color="000093">FrameBridge VS Diffusion Counterpart</font>
             </h2>
+            <br></br>
+            <figure>
+              <p align="center"><img src="figures/Figure1_marginal.svg" width="100%" class="center" /></p>
+              <figcaption>
+                <p style="text-align: justify;">
+                  <font color="061E61"><b>Figure 2:</b> Visualization for the mean value of marginal distributions. 
+                    We visualize the decoded mean value $D(\mu_t(\cdot))$ of bridge process and diffusion process, where $D$ is the pre-trained VAE decoder. 
+                    As shown, the prior and target of FrameBridge are naturally fitted with I2V synthesis. The data information is preserved along bridge process, while it gradually vanishes in the forward diffusion process.
+                </p>
+              </figcaption>
+            </figure>
+            <li><b>
+                <font color="061E61">Training from scratch on UCF-101:</font>
+            </b></li>
 
-            <p><b>
-                <font color="061E61">Training Setting: Fine-tuning Pre-trained VideoCrafter-1 (Text2Video) on WebVid (around 2M video samples) and then Testing FrameBridge in a Zero-shot Manner:</font>
-            </b></p>
+            <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
+              <thead>
+                <tr>
+                  <td colspan="2" width="40%">
+                    <font color="061E61">Sample 1:</font>
+                  </td>
+                  <td colspan="2" width="40%">
+                    <font color="061E61">Sample 2:</font>
+                  </td>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <td scope="col" width="20%">
+                    <font color="061E61">Static Image:</font>
+                  </td>
+                  <td scope="col" width="20%">
+                    <font color="061E61">Class Condition:</font>
+                  </td>
+                  <td scope="col" width="20%">
+                    <font color="061E61">Static Image:</font>
+                  </td>
+                  <td scope="col" width="20%">
+                    <font color="061E61">Class Condition:</font>
+                  </td>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <td scope="col" width="20%">
+                    <img src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/prompts/1.png" width="250">
+                  </td>
+                  <td scope="col" width="20%">
+                    <font color="061E61"><i>Boxing Speedbag</i></font>
+                  </td>
+                  <td scope="col" width="20%">
+                    <img src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/prompts/4.png" width="250">
+                  </td>
+                  <td scope="col" width="20%">
+                    <font color="061E61"><i>Basketball</i></font>
+                  </td>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <td scope="col" width="20%">
+                    <font color="061E61">Bridge:</font>
+                  </td>
+                  <td scope="col" width="20%">
+                    <font color="061E61">Diffusion:</font>
+                  </td>
+                  <td scope="col" width="20%">
+                    <font color="061E61">Bridge:</font>
+                  </td>
+                  <td scope="col" width="20%">
+                    <font color="061E61">Diffusion:</font>
+                  </td>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <td scope="col" width="20%">
+                    <video width="250" controls>
+                      <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/1/FrameBridge.mp4" type="video/mp4">
+                      Your browser does not support HTML video.
+                    </video>
+                  </td>
+                  <td scope="col" width="20%">
+                    <video width="250" controls>
+                      <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/1/Diffusion.mp4" type="video/mp4">
+                      Your browser does not support HTML video.
+                    </video>
+                  </td>
+                  <td scope="col" width="20%">
+                    <video width="250" controls>
+                      <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/4/FrameBridge.mp4" type="video/mp4">
+                      Your browser does not support HTML video.
+                    </video>
+                  </td>
+                  <td scope="col" width="20%">
+                    <video width="250" controls>
+                      <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/4/Diffusion.mp4" type="video/mp4">
+                      Your browser does not support HTML video.
+                    </video>
+                  </td>
+                </tr>
+              </thead>
+            </table>
 
+            <li><b>
+                <font color="061E61">Fine-tuning pre-trained VideoCrafter-1 (Text2Video) on WebVid and Testing FrameBridge in a Zero-shot Manner:</font>
+            </b></li>
             <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
               <thead>
                 <tr>
@@ -107,7 +208,7 @@
                     <img src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/prompts/1.png" width="250">
                   </td>
                   <td colspan="3" width="60%">
-                    <font color="061E61"><i>one girl is waving hand, one girl, solo, sexy pose, pensive woman, voluminous dress, intricate lace, embroidered gloves, feathered hat, curled hairdo, pale skin</i></font>
+                    <font color="061E61"><i>One girl is waving hand, one girl, solo, sexy pose, pensive woman, voluminous dress, intricate lace, embroidered gloves, feathered hat, curled hairdo, pale skin</i></font>
                   </td>
                 </tr>
               </thead>
@@ -117,7 +218,7 @@
                     <font color="061E61">FrameBridge:</font>
                   </td>
                   <td scope="col" width="20%">
-                    <font color="061E61">DynamiCrafter:</font>
+                    <font color="061E61">DynamicCrafter:</font>
                   </td>
                   <td scope="col" width="20%">
                     <font color="061E61">SEINE:</font>
@@ -162,10 +263,10 @@
               <thead>
                 <tr>
                   <td scope="col" width="20%">
-                    <img src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/prompts/2.jpg" width="250">
+                    <img src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/prompts/3.png" width="250">
                   </td>
                   <td colspan="3" width="60%">
-                    <font color="061E61"><i>stars shining, one castle, official art, extremely detailed CG unity 8k wallpaper, perfect lighting</i></font>
+                    <font color="061E61"><i>sun rising, mountain, path, masterpiece</i></font>
                   </td>
                 </tr>
               </thead>
@@ -175,7 +276,7 @@
                     <font color="061E61">FrameBridge:</font>
                   </td>
                   <td scope="col" width="20%">
-                    <font color="061E61">DynamiCrafter:</font>
+                    <font color="061E61">DynamicCrafter:</font>
                   </td>
                   <td scope="col" width="20%">
                     <font color="061E61">SEINE:</font>
@@ -186,19 +287,19 @@
                 <tr>
                   <td scope="col" width="20%">
                     <video width="250" controls>
-                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/2/FrameBridge.mp4" type="video/mp4">
+                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/3/FrameBridge.mp4" type="video/mp4">
                       Your browser does not support HTML video.
                     </video>
                   </td>
                   <td scope="col" width="20%">
                     <video width="250" controls>
-                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/2/DynamiCrafter.mp4" type="video/mp4">
+                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/3/DynamiCrafter.mp4" type="video/mp4">
                       Your browser does not support HTML video.
                     </video>
                   </td>
                   <td scope="col" width="20%">
                     <video width="250" controls>
-                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/2/SEINE.mp4" type="video/mp4">
+                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/3/SEINE.mp4" type="video/mp4">
                       Your browser does not support HTML video.
                     </video>
                   </td>
@@ -206,312 +307,24 @@
               </thead>
             </table>
 
-            <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <font color="061E61">Static Image:</font>
-                  </td>
-                  <td colspan="3" width="60%">
-                    <font color="061E61">Text Condition:</font>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <img src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/prompts/4.jpg" width="250">
-                  </td>
-                  <td colspan="3" width="60%">
-                    <font color="061E61"><i>clouds floating</i></font>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <font color="061E61">FrameBridge:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61">DynamiCrafter:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61">SEINE:</font>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/4/FrameBridge.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/4/DynamiCrafter.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/4/SEINE.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                </tr>
-              </thead>
-            </table>
-
-            <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <font color="061E61">Static Image:</font>
-                  </td>
-                  <td colspan="3" width="60%">
-                    <font color="061E61">Text Condition:</font>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <img src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/prompts/8.png" width="250">
-                  </td>
-                  <td colspan="3" width="60%">
-                    <font color="061E61"><i>b&w photo of old house, in the night, storm weather, wind, film grain</i></font>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <font color="061E61">FrameBridge:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61">DynamiCrafter:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61">SEINE:</font>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/8/FrameBridge.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/8/DynamiCrafter.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge vs Diffusion Counterpart/fine-tuned/8/SEINE.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                </tr>
-              </thead>
-            </table>
-
-            <p><b>
-              <font color="061E61">Training Setting: Training from scratch on UCF-101 (13,320 video samples):</font>
-          </b></p>
-
-          <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
-            <thead>
-              <tr>
-                <td colspan="2" width="40%">
-                  <font color="061E61">Sample 1:</font>
-                </td>
-                <td colspan="2" width="40%">
-                  <font color="061E61">Sample 2:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <font color="061E61">Static Image:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Class Condition:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Static Image:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Class Condition:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <img src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/prompts/1.png" width="250">
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>boxing speedbag</i></font>
-                </td>
-                <td scope="col" width="20%">
-                  <img src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/prompts/4.png" width="250">
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>basketball</i></font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <font color="061E61">Bridge:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Diffusion:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Bridge:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Diffusion:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/1/FrameBridge.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/1/Diffusion.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/4/FrameBridge.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/4/Diffusion.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-              </tr>
-            </thead>
-          </table>
-
-          <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
-            <thead>
-              <tr>
-                <td colspan="2" width="40%">
-                  <font color="061E61">Sample 3:</font>
-                </td>
-                <td colspan="2" width="40%">
-                  <font color="061E61">Sample 4:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <font color="061E61">Static Image:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Class Condition:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Static Image:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Class Condition:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <img src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/prompts/5.png" width="250">
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>cutting in Kitchen</i></font>
-                </td>
-                <td scope="col" width="20%">
-                  <img src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/prompts/3.png" width="250">
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>apply eye makeup</i></font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <font color="061E61">Bridge:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Diffusion:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Bridge:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Diffusion:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/5/FrameBridge.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/5/Diffusion.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/3/FrameBridge.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge vs Diffusion Counterpart/train-from-scratch/3/Diffusion.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-              </tr>
-            </thead>
-          </table>
 
             <br></br>
             <h2 id="Ablation on SNR-Aligned Fine-tuning">
               <font color="000093">Ablation on SNR-Aligned Fine-tuning</font>
             </h2>
-
-            <p><b>
+            <br></br>
+            <figure>
+              <p align="center"><img src="figures/FIgure2_SAF.svg" width="60%" height="60%" class="center" /></p>
+              <figcaption>
+                <p style="text-align: justify;">
+                  <font color="061E61"><b>Figure 3:</b> SNR-Aligned Fine-tuning for FrameBridge.
+                    SAF technique aligns the marginal distributions of FrameBridge with that of pre-trained Gaussian diffusion models, to improve fine-tuning efficiency.
+                </p>
+              </figcaption>
+            </figure>
+            <li><b>
                 <font color="061E61">Zero-shot Testing on MSR-VTT:</font>
-            </b></p>
+            </b></li>
 
             <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
               <thead>
@@ -549,10 +362,10 @@
                     <font color="061E61"><i>earth from outer space</i></font>
                   </td>
                   <td scope="col" width="20%">
-                    <img src="demo/FrameBridge-finetuned/zero-shot-msrvtt/prompts/0130.png" width="250">
+                    <img src="demo/FrameBridge-finetuned/zero-shot-msrvtt/prompts/0191.png" width="250">
                   </td>
                   <td scope="col" width="20%">
-                    <font color="061E61"><i>a girl watches a video on her iphone while her puppy sits in her lap</i></font>
+                    <font color="061E61"><i>electronic piano playing performance</i></font>
                   </td>
                 </tr>
               </thead>
@@ -588,13 +401,13 @@
                   </td>
                   <td scope="col" width="20%">
                     <video width="250" controls>
-                      <source src="demo/FrameBridge-finetuned/zero-shot-msrvtt/w.SAF/0130_sample0.mp4" type="video/mp4">
+                      <source src="demo/FrameBridge-finetuned/zero-shot-msrvtt/w.SAF/0191_sample0.mp4" type="video/mp4">
                       Your browser does not support HTML video.
                     </video>
                   </td>
                   <td scope="col" width="20%">
                     <video width="250" controls>
-                      <source src="demo/FrameBridge-finetuned/zero-shot-msrvtt/w.o.SAF/0130_sample0.mp4" type="video/mp4">
+                      <source src="demo/FrameBridge-finetuned/zero-shot-msrvtt/w.o.SAF/0191_sample0.mp4" type="video/mp4">
                       Your browser does not support HTML video.
                     </video>
                   </td>
@@ -602,98 +415,9 @@
               </thead>
             </table>
 
-            <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
-              <thead>
-                <tr>
-                  <td colspan="2" width="40%">
-                    <font color="061E61">Sample 3:</font>
-                  </td>
-                  <td colspan="2" width="40%">
-                    <font color="061E61">Sample 4:</font>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <font color="061E61">Static Image:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61">Text Condition:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61">Static Image:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61">Text Condition:</font>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <img src="demo/FrameBridge-finetuned/zero-shot-msrvtt/prompts/0027.png" width="250">
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61"><i>wrestlers are ready in the ring</i></font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <img src="demo/FrameBridge-finetuned/zero-shot-msrvtt/prompts/0039.png" width="250">
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61"><i>a girl demonstrates how to apply mascara</i></font>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <font color="061E61"><i>w.</i> SAF:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61"><i>w.o.</i> SAF:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61"><i>w.</i> SAF:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61"><i>w.o.</i> SAF:</font>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge-finetuned/zero-shot-msrvtt/w.SAF/0027_sample0.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge-finetuned/zero-shot-msrvtt/w.o.SAF/0027_sample0.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge-finetuned/zero-shot-msrvtt/w.SAF/0039_sample0.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge-finetuned/zero-shot-msrvtt/w.o.SAF/0039_sample0.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                </tr>
-              </thead>
-            </table>
-
-          <p><b>
+          <li><b>
               <font color="061E61">Zero-shot Testing on UCF-101:</font>
-          </b></p>
+          </b></li>
 
           <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
             <thead>
@@ -784,98 +508,10 @@
             </thead>
           </table>
           
-          <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
-            <thead>
-              <tr>
-                <td colspan="2" width="40%">
-                  <font color="061E61">Sample 3:</font>
-                </td>
-                <td colspan="2" width="40%">
-                  <font color="061E61">Sample 4:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <font color="061E61">Static Image:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Class Condition:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Static Image:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Class Condition:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <img src="demo/FrameBridge-finetuned/zero-shot-ucf101/prompts/0121-Rafting.png" width="250">
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>rafting</i></font>
-                </td>
-                <td scope="col" width="20%">
-                  <img src="demo/FrameBridge-finetuned/zero-shot-ucf101/prompts/0105-MoppingFloor.png" width="250">
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>mopping floor</i></font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>w.</i> SAF:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>w.o.</i> SAF:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>w.</i> SAF:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>w.o.</i> SAF:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge-finetuned/zero-shot-ucf101/w.SAF/0121-Rafting_sample0.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge-finetuned/zero-shot-ucf101/w.o.SAF/0121-Rafting_sample0.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge-finetuned/zero-shot-ucf101/w.SAF/0105-MoppingFloor_sample0.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge-finetuned/zero-shot-ucf101/w.o.SAF/0105-MoppingFloor_sample0.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-              </tr>
-            </thead>
-          </table>
 
-          <p><b>
+          <li><b>
               <font color="061E61">Zero-shot Testing with Other Prompt:</font>
-          </b></p>
+          </b></li>
 
           <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
             <thead>
@@ -913,10 +549,10 @@
                   <font color="061E61"><i>time-lapse of a blooming flower with leaves and a stem</i></font>
                 </td>
                 <td scope="col" width="20%">
-                  <img src="demo/FrameBridge-finetuned/other-images/prompts/2.png" width="250">
+                  <img src="demo/FrameBridge-finetuned/other-images/prompts/3.png" width="250">
                 </td>
                 <td scope="col" width="20%">
-                  <font color="061E61"><i>fireworks burst in front of a castle</i></font>
+                  <font color="061E61"><i>a bonfire is lit in the middle of a field</i></font>
                 </td>
               </tr>
             </thead>
@@ -952,13 +588,13 @@
                 </td>
                 <td scope="col" width="20%">
                   <video width="250" controls>
-                    <source src="demo/FrameBridge-finetuned/other-images/w.SAF/2.mp4" type="video/mp4">
+                    <source src="demo/FrameBridge-finetuned/other-images/w.SAF/3.mp4" type="video/mp4">
                     Your browser does not support HTML video.
                   </video>
                 </td>
                 <td scope="col" width="20%">
                   <video width="250" controls>
-                    <source src="demo/FrameBridge-finetuned/other-images/w.o.SAF/2.mp4" type="video/mp4">
+                    <source src="demo/FrameBridge-finetuned/other-images/w.o.SAF/3.mp4" type="video/mp4">
                     Your browser does not support HTML video.
                   </video>
                 </td>
@@ -966,103 +602,25 @@
             </thead>
           </table>
 
-          <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
-            <thead>
-              <tr>
-                <td colspan="2" width="40%">
-                  <font color="061E61">Sample 3:</font>
-                </td>
-                <td colspan="2" width="40%">
-                  <font color="061E61">Sample 4:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <font color="061E61">Static Image:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Text Condition:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Static Image:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61">Text Condition:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <img src="demo/FrameBridge-finetuned/other-images/prompts/8.png" width="250">
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>a boy walking on the street</i></font>
-                </td>
-                <td scope="col" width="20%">
-                  <img src="demo/FrameBridge-finetuned/other-images/prompts/6.png" width="250">
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>pouring honey onto some slices of bread</i></font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>w.</i> SAF:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>w.o.</i> SAF:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>w.</i> SAF:</font>
-                </td>
-                <td scope="col" width="20%">
-                  <font color="061E61"><i>w.o.</i> SAF:</font>
-                </td>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge-finetuned/other-images/w.SAF/8.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge-finetuned/other-images/w.o.SAF/8.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge-finetuned/other-images/w.SAF/6.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-                <td scope="col" width="20%">
-                  <video width="250" controls>
-                    <source src="demo/FrameBridge-finetuned/other-images/w.o.SAF/6.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                  </video>
-                </td>
-              </tr>
-            </thead>
-          </table>
 
           <br></br>
             <h2 id="Ablation on Neural Prior">
               <font color="000093">Ablation on Neural Prior</font>
             </h2>
+            <br></br>
+            <figure>
+              <p align="center"><img src="figures/Figure4_NP.svg" width="100%" class="center" /></p>
+              <figcaption>
+                <p style="text-align: justify;">
+                  <font color="061E61"><b>Figure 4:</b> Case of neural prior.
+                    The neural prior provides more motion information than a static image, and have been closer to the reference video in dataset.
+                </p>
+              </figcaption>
+            </figure>
 
-            <p><b>
+            <li><b>
                 <font color="061E61">Training from Scratch on UCF-101:</font>
-            </b></p>
+            </b></li>
 
             <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
               <thead>
@@ -1097,13 +655,13 @@
                     <img src="demo/FrameBridge-NP-UCF101/prompts/1.png" width="250">
                   </td>
                   <td scope="col" width="20%">
-                    <font color="061E61"><i>wall push-up</i></font>
+                    <font color="061E61"><i>Wall Push-up</i></font>
                   </td>
                   <td scope="col" width="20%">
-                    <img src="demo/FrameBridge-NP-UCF101/prompts/2.png" width="250">
+                    <img src="demo/FrameBridge-NP-UCF101/prompts/4.png" width="250">
                   </td>
                   <td scope="col" width="20%">
-                    <font color="061E61"><i>typing</i></font>
+                    <font color="061E61"><i>Fencing</i></font>
                   </td>
                 </tr>
               </thead>
@@ -1113,13 +671,13 @@
                     <font color="061E61">Neural Prior:</font>
                   </td>
                   <td scope="col" width="20%">
-                    <font color="061E61">Reference in Dataset:</font>
+                    <font color="061E61">Generation Result:</font>
                   </td>
                   <td scope="col" width="20%">
                     <font color="061E61">Neural Prior:</font>
                   </td>
                   <td scope="col" width="20%">
-                    <font color="061E61">Reference in Dataset:</font>
+                    <font color="061E61">Generation Result:</font>
                   </td>
                 </tr>
               </thead>
@@ -1133,63 +691,19 @@
                   </td>
                   <td scope="col" width="20%">
                     <video width="250" controls>
-                      <source src="demo/FrameBridge-NP-UCF101/1/reference.mp4" type="video/mp4">
+                      <source src="demo/FrameBridge-NP-UCF101/1/sample.mp4" type="video/mp4">
                       Your browser does not support HTML video.
                     </video>
                   </td>
                   <td scope="col" width="20%">
                     <video width="250" controls>
-                      <source src="demo/FrameBridge-NP-UCF101/2/neural-prior.mp4" type="video/mp4">
+                      <source src="demo/FrameBridge-NP-UCF101/4/neural-prior.mp4" type="video/mp4">
                       Your browser does not support HTML video.
                     </video>
                   </td>
                   <td scope="col" width="20%">
                     <video width="250" controls>
-                      <source src="demo/FrameBridge-NP-UCF101/2/reference.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <font color="061E61"><i>w.</i>  NP:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61"><i>w.o.</i> NP:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61"><i>w.</i> NP:</font>
-                  </td>
-                  <td scope="col" width="20%">
-                    <font color="061E61"><i>w.o.</i> NP:</font>
-                  </td>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge-NP-UCF101/1/w.NP.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge-NP-UCF101/1/w.o.NP.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge-NP-UCF101/2/w.NP.mp4" type="video/mp4">
-                      Your browser does not support HTML video.
-                    </video>
-                  </td>
-                  <td scope="col" width="20%">
-                    <video width="250" controls>
-                      <source src="demo/FrameBridge-NP-UCF101/2/w.o.NP.mp4" type="video/mp4">
+                      <source src="demo/FrameBridge-NP-UCF101/4/sample.mp4" type="video/mp4">
                       Your browser does not support HTML video.
                     </video>
                   </td>
@@ -1250,7 +764,6 @@
     <script type="text/javascript" async
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
       </script>
-
 
 
 
